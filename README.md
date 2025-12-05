@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# Cyber Clinic Mapper
-
-## Short Description
-Cyber Clinic Online provides accessible, practical tools for cyber analysts, starting with a CVE-to-CWE mapping and analysis engine. This prototype helps analysts quickly assess vulnerabilities, prioritize threats, and deliver cost-efficient recommendations ideally leveling the cybersecurity playing field.
-
-## Project Plan
-To develop the core diagnostic engine of a user-friendly cyber “clinic” which would be a tool that enables cyber analysts to quickly and efficiently map CVEs to CWEs, assess cybersecurity posture, and generate actionable reports. This first phase will deliver a cost-efficient, accessible solution that supports analysts in providing “clinic-style” recommendations, improving both speed and accessibility of cybersecurity assessments. 
-=======
 # MCP CVE→CWE→CIS Mapper
 
 A minimal, offline MCP server that ingests CWE XML and CIS CSV (optionally CVE JSONs) into a local SQLite database and suggests high-quality CIS safeguards for specific CWEs.
@@ -25,14 +16,14 @@ A minimal, offline MCP server that ingests CWE XML and CIS CSV (optionally CVE J
 Run via stdio with FastMCP:
 
 ```powershell
-python c:\Users\thoma\Desktop\Academic\Cyber_Research\mcp_servers\MCPFramework-CVE-to-CWE_Mapper\CVE_CWE_Mapper_server.py
+python MCPFramework-CVE-to-CWE_Mapper/CVE_CWE_Mapper_server.py
 ```
 
 By default the DB is `mcp_servers\MCPFramework-CVE-to-CWE_Mapper\data\index.db`. To override:
 
 ```powershell
 # Optional .env at repo root
-"MAPPER_DB_PATH=C:\\path\\to\\index.db" | Out-File -Encoding utf8 -FilePath .env
+"MAPPER_DB_PATH=C:\\path\\to\\your\\index.db" | Out-File -Encoding utf8 -FilePath .env
 ```
 
 ## Core tools
@@ -73,4 +64,3 @@ python -c "import runpy; runpy.run_path('mcp_servers/MCPFramework-CVE-to-CWE_Map
 
 ## License
 Research-oriented; see top-level project license files when present.
->>>>>>> 3b778f0 (Mapper: add safe .env.example; data/.keep; finalize README/.gitignore; include server; remove legacy server.py)
