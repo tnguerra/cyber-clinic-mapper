@@ -1,0 +1,31 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# Editors/OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Builds/Dist
+dist/
+build/
+
+# Local data (keep folder; ignore DB files)
+data/*.db
+data/*.sqlite
+data/*.tmp
+data/*.bak
+*.log
+
+# Node leftovers (if any)
+node_modules/
+package-lock.json
+*.lock
+package.json

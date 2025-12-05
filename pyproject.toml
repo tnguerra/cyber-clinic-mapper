@@ -1,0 +1,23 @@
+[project]
+name = "MCPFramework-CVE-to-CWE_Mapper"
+version = "0.1.0"
+description = "Minimal Python MCP server for Claude Desktop"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "mcp[cli]>=1.14.1",
+  "lxml>=4.9.0",
+  "rapidfuzz>=2.0.0",
+]
+
+# dev/test dependencies are kept in requirements.txt for local/dev installs
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+# optional uv settings placeholder
+
+[tool.hatch.build.targets.wheel]
+packages = ["mcppython"]
