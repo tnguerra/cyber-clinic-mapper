@@ -44,7 +44,7 @@ By default the DB is `mcp_servers\MCPFramework-CVE-to-CWE_Mapper\data\index.db`.
 - `cve_suggest_cis(cwe_id, top_n=10, prefer_functions="Protect,Detect", prefer_asset_classes="")`: Ranked CIS safeguards.
 - `cve_suggest_cis_for_cwe(cwe_id)`: Convenience alias for `cve_suggest_cis`.
 - `cve_ingest_file(file_path)`: Ingest a single CVE JSON (validated path and extension).
-- `cve_search_cves(query)`, `cve_get_cve_sample(limit)`.
+- `cve_search_cves(query)`, `cve_get_cve_sample_v2(limit)`.
 - `cve_debug_dry_run_dir(source_dir, max_files=200)`: Dry-run CVE ingestion without DB writes.
 
 ## Typical flow (PowerShell)
