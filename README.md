@@ -44,7 +44,14 @@ By default the DB is `mcp_servers\MCPFramework-CVE-to-CWE_Mapper\data\index.db`.
 - `cve_suggest_cis(cwe_id, top_n=10, prefer_functions="Protect,Detect", prefer_asset_classes="")`: Ranked CIS safeguards.
 - `cve_suggest_cis_for_cwe(cwe_id)`: Convenience alias for `cve_suggest_cis`.
 - `cve_ingest_file(file_path)`: Ingest a single CVE JSON (validated path and extension).
-- `cve_search_cves(query)`, `cve_get_cve_sample_v2(limit)`.
+- `cve_search_cves(query, limit=20, mode="auto")`, `cve_get_cve_sample_v2(limit)`.
+
+### Search modes
+- `mode='auto'` (default): the server auto-detects CVE-like identifiers (e.g. `CVE-2021-44228`) and performs an exact-id lookup; non-CVE keyword queries use fuzzy matching.
+- `mode='exact'`: strict exact-id lookup; returns a single match or an explicit empty result when not found.
+- `mode='fuzzy'`: original behavior using LIKE/keyword matching across id/title/description fields.
+
+This preserves backward compatibility: callers that omit `mode` continue to get the previous experience, while callers that need precise CVE lookups can request `exact`.
 - `cve_debug_dry_run_dir(source_dir, max_files=200)`: Dry-run CVE ingestion without DB writes.
 
 ## Typical flow (PowerShell)
@@ -64,6 +71,15 @@ python -c "import runpy; runpy.run_path('mcp_servers/MCPFramework-CVE-to-CWE_Map
 - Inputs are path-validated with clear `{ok: False, error: ...}` responses.
 - DB builds use WAL and atomic swap when `reindex=True`.
 - Suggestions use IDF-weighted Jaccard with boosts (title/phrase, function, asset class, Control 16 heuristic).
+
+## Testing and admin tools
+- The repository includes an `admin/` folder with diagnostic and utility scripts used for ingestion, validation, and smoke testing. The main smoke harness is `admin/smoke_test.py`.
+- There are focused tests used during development and validation:
+	- `test_cve_id.py` — unit tests for CVE pattern detection (CVE-YYYY-NNNN).
+	- `test_search_modes.py` — integration tests validating `exact`, `fuzzy`, and `auto` search behaviors.
+- Running the smoke tests validates the end-to-end behavior of ingest, indexing, and search; these tests are used before commits and releases.
+
+If you maintain or extend search behavior, update or add tests under the repository root to keep the codebase verifiable.
 
 ## Troubleshooting
 - `cwe_xml_path` / `cis_csv_path` invalid: ensure the path exists; the tools return a descriptive error.
